@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import App from './App';
 import { ResultContextProvider } from './contexts/ResultContextProvider';
@@ -10,6 +10,9 @@ ReactDOM.render(
     <ResultContextProvider>
         <Router>
             <App />
+            <Routes>
+                <Route path= "/" element= {<Navigate to='/search'/>} />
+            </Routes>
         </Router>
     </ResultContextProvider>, 
 
