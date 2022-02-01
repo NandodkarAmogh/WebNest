@@ -14,7 +14,7 @@ const Results = () => {
       if(location.pathname === '/videos') {
         getResults(`/search/q=${searchTerm} videos`);
       } else {
-        getResults(`${location.pathname}/q=${searchTerm}&num=40`);
+        getResults(`${location.pathname}/q=${searchTerm}`);
       }
     }
   
@@ -64,25 +64,36 @@ const Results = () => {
     case '/news':
         return (
           <div className='flex flex-wrap justify-between space-y-6 sm:px-56 items-center'>
-            {results?.map(({ links, title, id, source}) => (
+            {results?.map(({ links, title, id, source, published }) => (
               <div key={id} className='md:w-2/5 w-full'>
                 <a href={links?.[0].href} target="_blank" rel='noreferrer' className='hover:underline'>
                   <p className='text-lg dark:text-blue-300 text-blue-700'>
                     {title}
                   </p>
-                  <div className='flex gap-4'>
-                    <a href={source?.href} target='_blank' rel='noreferrer'>
-                      {source?.href}
-                    </a>
-                  </div>
-                </a>  
+                </a>
+                <div className='flex gap-4'>
+                  <a href={source?.href} target='_blank' rel='noreferrer' className="hover:underline hover:text-blue-300">
+                    {source?.href}
+                  </a>
+                </div> 
+                <p className='text-sm dark:text-blue-100 text-gray-500'>
+                  {published}
+                </p> 
               </div>
             ))}  
           </div>
         )
       break;
     case '/videos':
-        return 'SEARCH'
+        return (
+          <div className='flex flex-wrap'>
+            {results.map((video,index) => (
+              <div key={index} className='p-2'>
+                <ReactPlayer url={video.additional_links?.[0].href} controls width="355px" height="200px"/>
+              </div>
+            ))}
+          </div>
+        )
       break;
   
     default:

@@ -6,7 +6,7 @@ const baseUrl = 'https://google-search3.p.rapidapi.com/api/v1';
 export const ResultContextProvider = ({ children }) => {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('Elon Musk');
+  const [searchTerm, setSearchTerm] = useState('tesla');
 
   const getResults = async (type) => {
     setIsLoading(true);
@@ -14,7 +14,6 @@ export const ResultContextProvider = ({ children }) => {
     const response = await fetch(`${baseUrl}${type}`, {
       method: 'GET',
       headers: {
-        'x-user-agent': 'desktop',
         'x-proxy-location': 'IN',
         'x-rapidapi-host': 'google-search3.p.rapidapi.com',
         'x-rapidapi-key': '0acf04ba65msh1fcb8e6e42cd3b7p1d3febjsn32ce491bdbf2',
