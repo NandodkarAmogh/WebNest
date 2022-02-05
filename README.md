@@ -40,8 +40,8 @@ With the ability to search for up-to-date results, news, images, and videos, mod
 
 ### Links
 
-- Solution URL: [https://github.com/NandodkarAmogh/Bookverse#demo](https://github.com/NandodkarAmogh/Bookverse#demo)
-- Live Site URL: [https://boookverse.netlify.app/](https://boookverse.netlify.app/)
+- Solution URL: [https://github.com/NandodkarAmogh/WebNest](https://github.com/NandodkarAmogh/WebNest)
+- Live Site URL: [https://webnest.netlify.app/search](https://webnest.netlify.app/search)
 
 ## My process
 
