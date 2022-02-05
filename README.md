@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# WebNest
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
 
-## Available Scripts
+- [Overview](#overview)
+  - [Demo](#demo)
+  - [Screenshot](#screenshot)
+    - [Desktop](#desktop)
+    - [Mobile](#mobile)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+- [Author](#author)
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Overview
+With the ability to search for up-to-date results, news, images, and videos, modern UI, dark mode, this is a completely responsive Google Clone.
+### Demo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![](./src/images/desktop.gif)
 
-### `npm test`
+### Screenshot
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Desktop
+![](./src/images/desktop1.png)
+![](./src/images/desktop2.png)
+![](./src/images/desktop3.png)
+![](./src/images/desktop4.png)
+![](./src/images/desktop5.png)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Mobile
+![](./src/images/mobile1.png)
+![](./src/images/mobile2.png)
+![](./src/images/mobile3.png)
+![](./src/images/mobile4.png)
+![](./src/images/mobile5.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Links
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Solution URL: [https://github.com/NandodkarAmogh/Bookverse#demo](https://github.com/NandodkarAmogh/Bookverse#demo)
+- Live Site URL: [https://boookverse.netlify.app/](https://boookverse.netlify.app/)
 
-### `npm run eject`
+## My process
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Built with
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- [React Router](https://reactrouter.com/) 
+- [Google Search API](https://rapidapi.com/apigeek/api/google-search3?utm_source=youtube.com%2FJavaScriptMastery&utm_medium=DevRel&utm_campaign=DevRel) - API
+- [Tailwind CSS](https://tailwindcss.com/) - For styles
+### What I learned
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This is my first project in which I worked with Tailwind CSS. This project helped me in revising some of the core react concepts like react router and hooks like useState and useContext. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```react
 
-## Learn More
+    export const ResultContextProvider = ({ children }) => {
+    const [results, setResults] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('tesla');
+    const [total, setTotal] = useState('');
+    const [ts,setTs] = useState('')
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    const getResults = async (type) => {
+    setIsLoading(true);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    const response = await fetch(`${baseUrl}${type}`, {
+      method: 'GET',
+      headers: {
+        'x-proxy-location': 'IN',
+        'x-rapidapi-host': 'google-search3.p.rapidapi.com',
+        'x-rapidapi-key': '0acf04ba65msh1fcb8e6e42cd3b7p1d3febjsn32ce491bdbf2',
+      },
+    });
 
-### Code Splitting
+    const data = await response.json();
+    console.log(data);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    if(type.includes('/news')) {
+      setResults(data.entries);
+      // setNewsTotal(data.total);
+    } else if(type.includes('/images')) {
+      setResults(data.image_results);
+      // setImagesTotal(data.total);
+    } else {
+      setResults(data.results);
+      setTotal(data.total);
+      setTs(data.ts)
+    }
 
-### Analyzing the Bundle Size
+    setIsLoading(false);
+    };
+  
+    return (
+        <ResultContext.Provider value={{ getResults, results, searchTerm, setSearchTerm, isLoading, total, ts }}>
+        {children}
+        </ResultContext.Provider>
+    );
+};
+```
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Github - [@NandodkarAmogh](https://github.com/NandodkarAmogh)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

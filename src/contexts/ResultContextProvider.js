@@ -8,9 +8,6 @@ export const ResultContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('tesla');
   const [total, setTotal] = useState('');
-  // const [newsTotal, setNewsTotal] = useState('');
-  // const [imagesTotal, setImagesTotal] = useState('');
-  // const [videosTotal, setVideosTotal] = useState('');
   const [ts,setTs] = useState('')
 
   const getResults = async (type) => {
