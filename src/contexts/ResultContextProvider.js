@@ -7,6 +7,11 @@ export const ResultContextProvider = ({ children }) => {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('tesla');
+  const [total, setTotal] = useState('');
+  // const [newsTotal, setNewsTotal] = useState('');
+  // const [imagesTotal, setImagesTotal] = useState('');
+  // const [videosTotal, setVideosTotal] = useState('');
+  const [ts,setTs] = useState('')
 
   const getResults = async (type) => {
     setIsLoading(true);
@@ -25,17 +30,21 @@ export const ResultContextProvider = ({ children }) => {
 
     if(type.includes('/news')) {
       setResults(data.entries);
+      // setNewsTotal(data.total);
     } else if(type.includes('/images')) {
       setResults(data.image_results);
+      // setImagesTotal(data.total);
     } else {
       setResults(data.results);
+      setTotal(data.total);
+      setTs(data.ts)
     }
 
     setIsLoading(false);
   };
   
   return (
-    <ResultContext.Provider value={{ getResults, results, searchTerm, setSearchTerm, isLoading }}>
+    <ResultContext.Provider value={{ getResults, results, searchTerm, setSearchTerm, isLoading, total, ts }}>
       {children}
     </ResultContext.Provider>
   );

@@ -13,10 +13,11 @@ const Links = () => {
   return (
     <div className="flex sm:justify-around justify-between items-center mt-4 ml-0 mr-0   ">
     {links.map(({ url, text }) => (
-      <NavLink className='m-2 mb-0' to={url} activeClassName="text-blue-700 border-b-2 dark:text-blue-300 border-blue-700 pb-2">{text}</NavLink>
+      <NavLink key={text} className='m-2 mb-0' to={url} className={(navData) => navData.isActive ? "text-blue-700 border-b-2 dark:text-blue-300 border-blue-700 pb-2" : "" }>{text}</NavLink>
     ))}
   </div>
   )
 }
 
 export default Links
+

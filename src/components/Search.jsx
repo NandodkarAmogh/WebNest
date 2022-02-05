@@ -6,8 +6,8 @@ import Links from './Links';
 const Search = () => {
   const [ text, setText ] = useState('Elon Musk');
 
-  const { setSearchTerm } = useResultContext();
-  const [ debouncedValue ] = useDebounce(text,300);
+  const { setSearchTerm, total, ts } = useResultContext();
+  const [ debouncedValue ] = useDebounce(text,600);
 
   useEffect(() => {
     if(debouncedValue) setSearchTerm(debouncedValue)
@@ -29,6 +29,10 @@ const Search = () => {
           </button>
       )}
       <Links />
+      <div className='flex flex-row center m-4 text-blue-400 dark:text-blue-200'>
+        <div className='text-sm text-center'>About {total} results</div>  
+        <div className='text-sm text-center ml-1'>({ts} seconds)</div>  
+      </div>
     </div>
   )
 }
