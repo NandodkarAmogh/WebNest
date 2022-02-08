@@ -18,7 +18,7 @@ export const ResultContextProvider = ({ children }) => {
       headers: {
         'x-proxy-location': 'IN',
         'x-rapidapi-host': 'google-search3.p.rapidapi.com',
-        'x-rapidapi-key': '0acf04ba65msh1fcb8e6e42cd3b7p1d3febjsn32ce491bdbf2',
+        'x-rapidapi-key': process.env.REACT_APP_API_KEY,
       },
     });
 
